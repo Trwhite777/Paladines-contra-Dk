@@ -52,8 +52,8 @@ abstract public class Personaje {
         System.out.println("Daño = " + fuerza);
     }
 
-    public double atacarOBjetivo (String name , boolean ataque , String nameNpc ) {
-        System.out.println( name + "Ataca a " + nameNpc);
+    public double atacarOBjetivo (Personaje personaje , Npc npc ) {
+        System.out.println( name + "Ataca a " + npc.getName() );
         double daño=calculadoraDaño(fuerza);
         double dañoTotal = daño;
         if (ataque) {
@@ -63,19 +63,20 @@ abstract public class Personaje {
         System.out.println( name + " Hizo un total de daño " +dañoTotal + " a " + nameNpc );
 
         double nuevaVida =recibirDaño(dañoTotal, Npc.vida);
+
         return nuevaVida;
     }
 
-    public boolean defenderAttack(String name) {
+    public boolean defenderAttack(Personaje personaje) {
         boolean isDefense=true;
-        System.out.println(name + "Se Defiende");
+        System.out.println(personaje.getName() + "Se Defiende");
         System.out.println("Siguiente ataque recibido reducido 50%");
         return isDefense;
     }
 
-    public boolean concentracionAttack (String name) {
+    public boolean concentracionAttack (Personaje personaje) {
         boolean isConcentr = true;
-        System.out.println(name + " se concentro " );
+        System.out.println(personaje.getName() + " se concentro " );
         System.out.println("Siguiente ataque 2x");
         return isConcentr;
     }
@@ -100,7 +101,9 @@ abstract public class Personaje {
 
     public static double  calculadoraDaño (int fuerza) {
         Random random = new Random();
-        int subdaño = random.nextInt((fuerza - 8) + 1) + 8;
+        final int variadorDaño = fuerza-2;
+        // el 1 esta para evitar que random me pueda generar 0 algo que no quiero en mi programa
+        int subdaño = random.nextInt((fuerza - variadorDaño) + 1) + variadorDaño;
         return subdaño;
     }
 

@@ -8,8 +8,8 @@ public static void main(String[] args) {
     boolean isSelectorPj = true;
     boolean defensa = false;
     boolean ataque = false;
-    Personaje personaje1 = new Personaje() {
-    };
+    Personaje personaje1 = new Personaje() {};
+    Combat combat = new Combat();
     while (isSelectorPj) {
         System.out.println("Que Clase quieres escojer");
         System.out.println("1 info Paladin");
@@ -55,40 +55,35 @@ public static void main(String[] args) {
         }
 
         Npc npc1 = new Npc("Bulbasur" , 100);
-        boolean combat =false;
-        while (combat=true) {
-            System.out.println("Menu Accions");
-            System.out.println("1 : MOSTRAR ESTADISTICAS");
-            System.out.println("2 : CURARSE");
-            System.out.println("3 : CONCENTRARSE");
-            System.out.println("4 : DEFENDENSER");
-            System.out.println("5 : ATACAR");
-            System.out.println("6 : VER STAST ENEMIGO");
-            System.out.println("7 : HUIR");
-            byte accions = scanner.nextByte();
-            switch (accions) {
-                case (1):
-                    personaje1.mostrarEstadisticas();
+
+        byte accions = scanner.nextByte();
+
+        while (combat.GetisCombatActive()) {
+            combat.menuAccionsMain();
+            byte MenuAccionMain = scanner.nextByte();
+            switch (MenuAccionMain) {
+                case 1:
+                    combat.menuAccionInfo();
+                    byte accion = scanner.nextByte();
+                    combat.accionInfo(accion);
                     break;
-                case (2):
-                    personaje1.healHp(personaje1.getVida(), personaje1.getName());
-                    break;
-                case (3):
-                    ataque = personaje1.concentracionAttack(personaje1.getName());
-                    break;
-                case (4):
+                case 2:
                     defensa = personaje1.defenderAttack(personaje1.getName());
                     break;
-                case (5):
-                    double changevida = personaje1.atacarOBjetivo(personaje1.getName(),ataque , npc1.name );
+                case 3:
+                    combat.menuAccionsAttack();
+                    byte accion = scanner.nextByte();
                     ataque = false;
-                    npc1.setVida(changevida);
                     break;
-                case (6):
-                    npc1.mostrarEstadisticas();
+                case 4:
+                    System.out.println("Escapaste");
+                    combat.setCombatActive(false);
                     break;
 
+                default:
+                    System.out.println("Opcion no valida");
             }
+
         }
 
 
