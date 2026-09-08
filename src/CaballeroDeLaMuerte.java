@@ -1,6 +1,15 @@
-public class CaballeroDeLaMuerte extends Personaje implements ACCIONS{
+public class CaballeroDeLaMuerte extends Personaje implements Accions {
 
     public CaballeroDeLaMuerte() {
+    }
+
+
+
+    @Override
+    public void   mostrarEstadisticas() {
+        System.out.println("Nombre = " + name);
+        System.out.println("Vida = " + vida);
+        System.out.println("Daño = " + fuerza);
     }
 
     @Override
@@ -15,6 +24,6 @@ public class CaballeroDeLaMuerte extends Personaje implements ACCIONS{
         System.out.println("LA OSCURIDAD TE INVADE");
         System.out.println("CLAVANDO TU ESPADA EN EL PISO");
         System.out.println("PROFANAS EL SUELO");
-        System.out.println("LOS SIGUIENTES TURNOS GENERARAS DAÑO EXTRA");
+        System.out.println("LOS SIGUIENTES TURNOS GENERARAS DRENARAS LA VIDA DE TU OPONENTE !");
     }
 }

@@ -1,3 +1,3 @@
-public interface ACCIONS {
+public interface Accions {
 
 }
