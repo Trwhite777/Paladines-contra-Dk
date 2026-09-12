@@ -1,6 +1,8 @@
+import Pokemones.Pokemon;
+
 public class Combat {
 
-    Personaje personaje;
+    Pokemon pokemon;
     boolean isCombatActive = false;
 
     public void combat () {
@@ -45,37 +47,16 @@ public class Combat {
         System.out.println("==========================");
     }
 
-    public void accionInfo (byte Accion, Personaje personaje1 , Npc npc1) {
+    public void accionInfo (byte Accion, Pokemon pokemon1, Npc npc1) {
         switch (Accion) {
             case 1:
-                personaje1.mostrarEstadisticas();
                 break;
             case 2:
-                npc1.mostrarEstadisticas();
                 break;
         }
     }
 
 
-    public static byte realizarAcciones (byte Opcions, Personaje personaje1 , Npc npc1 , Boolean isCombatActive ) {
-        switch (Opcions) {
-        case (1):
-            double changevida = personaje1.atacarOBjetivo(personaje1.getName(), ataque , npc1.name );
-            npc1.setVida(changevida);
-            break;
-        case (2):
-            ataque = personaje1.concentracionAttack(personaje1);
-            break;
-        case (3):
-            personaje1.healHp(personaje1.getVida(), personaje1.getName());
-            break;
-        case (6):
-            npc1.mostrarEstadisticas();
-            break;
-
-    }
-    return var;
-    }
 
 
 
